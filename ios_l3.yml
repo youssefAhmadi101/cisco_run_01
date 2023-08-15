@@ -2,10 +2,9 @@
 - name: IOS Config Demo
   hosts: ios_conf_l3
   tasks:
-    - name: CONF INT 01
-      cisco.iosxr.iosxr_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/0/0/0
-            ipv4:
-              - address: 192.168.0.2/24
-        state: merged
+    - name: configure interface settings
+      cisco.iosxr.iosxr_config:
+        lines:
+        - description test interface
+        - ip address 172.31.1.1 255.255.255.0
+        parents: interface GigabitEthernet0/0/0/0
