@@ -2,52 +2,26 @@
 - name: IOS Config Demo
   hosts: routers_ssh_pass
   tasks:
-################### IP Config Merged ##############
-    - name: Interface Configuration
-      ios_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/1
-            ipv4:
-              - address: 172.16.8.10 255.255.255.0
-        state: merged
-      register: int
-
-    - debug:
-        var: int.before
-    - debug:
-        var: int.commands
-    - debug:
-        var: int.after
-
-    ################## IP Config Replaced ##############
-    - name: Interface Configuration
-      ios_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/1
-            ipv4:
-              - address: 172.16.8.20 255.255.255.0
-        state: replaced
-      register: int
-
-    - debug:
-        var: int.before
-    - debug:
-        var: int.commands
-    - debug:
-        var: int.after
-
-    ################## IP Config Deleted ##############
-    - name: Interface Configuration
-      ios_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/1
-        state: deleted
-
-    ################## IP Config Overridden ##############
-    - name: Interface Configuration
-      ios_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/1
-            ipv4:
-              - address: 172.16.8.3 255.255.255.0
-        state: overridden
+  - name: config mode command
+    ios_config:
+      lines:
+      - ip domain name sii.com
+  - name: config interface 01
+    ios_config:
+      parents: interface GigabitEthernet0/1
+      lines:
+        - ip address 2.2.2.2 255.255.255.0
+        - description ansible_configured
+      diff_against: startup
+      save_when: modified
+  - name: Configure Multiple interfaces
+    ios_config:
+      parents: "{{ item }}"
+      lines:
+        - description backup_int
+      after:
+        - no shutdown
+      save_when: modified
+    with_items:
+        - interface GigabitEthernet0/2
+        - interface GigabitEthernet0/3
