@@ -2,10 +2,7 @@
 - name: IOS Config Demo
   hosts: ios_conf_l3
   tasks:
-  - name: config mode command
-    cisco.iosxr.iosxr_l3_interfaces::
-      lines:
-      - ip domain name sii.com
+
   - name: config interface 01
     cisco.iosxr.iosxr_l3_interfaces::
       parents: interface GigabitEthernet0/0/0/1
