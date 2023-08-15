@@ -3,11 +3,11 @@
   hosts: ios_conf_l3
   tasks:
   - name: config mode command
-    ios_config:
+    cisco.iosxr.iosxr_l3_interfaces::
       lines:
       - ip domain name sii.com
   - name: config interface 01
-    ios_config:
+    cisco.iosxr.iosxr_l3_interfaces::
       parents: interface GigabitEthernet0/0/0/1
       lines:
         - ip address 2.2.2.2 255.255.255.0
@@ -15,7 +15,7 @@
       diff_against: startup
       save_when: modified
   - name: Configure Multiple interfaces
-    ios_config:
+    cisco.iosxr.iosxr_l3_interfaces::
       parents: "{{ item }}"
       lines:
         - description backup_int
