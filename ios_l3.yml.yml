@@ -8,7 +8,7 @@
       - ip domain name sii.com
   - name: config interface 01
     ios_config:
-      parents: interface GigabitEthernet0/1
+      parents: interface GigabitEthernet0/0/0/1
       lines:
         - ip address 2.2.2.2 255.255.255.0
         - description ansible_configured
@@ -23,5 +23,4 @@
         - no shutdown
       save_when: modified
     with_items:
-        - interface GigabitEthernet0/2
-        - interface GigabitEthernet0/3
+        - interface GigabitEthernet0/0/0/0
