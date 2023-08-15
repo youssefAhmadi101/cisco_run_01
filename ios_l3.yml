@@ -2,14 +2,14 @@
 - name: IOS Config Demo
   hosts: ios_conf_l3
   tasks:
-  
+
 - name: Merge provided configuration with device configuration
   cisco.iosxr.iosxr_l3_interfaces:
     config:
-    - name: GigabitEthernet0/0/0/2
+    - name: GigabitEthernet0/0/0/0
       ipv4:
       - address: 192.168.0.1/24
-    - name: GigabitEthernet0/0/0/3
+    - name: GigabitEthernet0/0/0/1
       ipv4:
       - address: 192.168.2.1/24
         secondary: true
