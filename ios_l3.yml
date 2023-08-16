@@ -7,4 +7,4 @@
         lines:
         - description test interface
         - ip address 172.31.1.1 255.255.255.0
-        parents: interface GigabitEthernet1/0
+        parents: interface GigabitEthernet0/1
