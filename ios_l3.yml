@@ -3,6 +3,7 @@
   hosts: routers_ssh_pass
 
   tasks:
+
     - name: Conf int IP
       ios_config:
         parents: interface GigabitEthernet0/1
