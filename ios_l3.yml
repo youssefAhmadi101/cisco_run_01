@@ -3,10 +3,6 @@
   hosts: routers_ssh_pass
 
   tasks:
-    - name: 01 
-      ios_config:
-        lines:
-          - ip domain name test.com
     - name: Conf int IP
       ios_config:
         parents: interface GigabitEthernet0/1
