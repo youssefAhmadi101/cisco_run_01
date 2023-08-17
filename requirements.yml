@@ -1,6 +1,0 @@
----
-collections:
-- netbox.netbox
-- arubanetworks.aos_switch
-- cisco.ios
-- ios_config
